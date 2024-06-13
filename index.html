@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React DOM</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(peakpx\ \(13\).jpg);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #f42626f0;
+            box-shadow: 0px 0px 10px 6px rgb(249, 62, 62);
+            border-radius: 10px;
+        }
+
+        #regularDiv, #reactDiv {
+            width: 80%;
+            padding: 30px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        #regularDiv {
+            background-image: linear-gradient(rgb(12, 12, 12) 0%, 30%, #afafaf 80%);
+
+        }
+
+        #reactDiv {
+            
+            background-image: linear-gradient(rgb(215, 216, 216) 0%, 30%, rgb(5, 5, 5) 80%);
+            ;
+        }
+
+        input {
+            margin-top: 10px;
+            padding: 5px;
+            font-size: 1em;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>React DOM Check</h1>
+
+    <div id="regularDiv">
+        This should change
+    </div>
+
+    <br>
+
+    <div id="reactDiv" style="color: white;">
+        This should change
+    </div>
+   
+    <script type="text/babel">
+        const rootNode = ReactDOM.createRoot(document.getElementById("reactDiv"));
+       
+        function renderThis() {
+            document.getElementById("regularDiv").innerHTML =
+            "<input/> <p> " + (new Date()).toString() +" </p>" ;
+
+            const myElem = (
+                <div>
+                    <input />
+                    <p>{(new Date()).toString()}</p>
+                </div>
+            );
+            rootNode.render(myElem);
+        }
+
+        setInterval(renderThis, 1000);
+    </script>
+</body>
+</html>
